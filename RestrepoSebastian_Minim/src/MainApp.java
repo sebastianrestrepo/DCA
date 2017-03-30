@@ -16,7 +16,7 @@ public class MainApp extends PApplet {
 
 	@Override
 	public void settings() {
-		size(1200, 200);
+		size(1400, 700);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class MainApp extends PApplet {
 		minim = new Minim(this);
 		sample = minim.loadSample("../data/BD.mp3", 512);
 		cancion = minim.loadFile("../data/marcus_kellis_theme.mp3");
-		cancion.play();
+		// cancion.play();
 	}
 
 	@Override
@@ -35,8 +35,18 @@ public class MainApp extends PApplet {
 
 	@Override
 	public void keyPressed() {
-
 		sample.trigger();
 	}
 
+	public void mousePressed() {
+		mundo.mousePressed();
+	}
+
+	public void mouseDragged() {
+		mundo.mouseDragged();
+	}
+
+	public void mouseReleased() {
+		mundo.mouseReleased();
+	}
 }

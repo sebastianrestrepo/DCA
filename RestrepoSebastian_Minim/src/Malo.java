@@ -2,11 +2,12 @@ import processing.core.PApplet;
 
 public class Malo extends Automata {
 
-	private Bueno b;
+	private Mundo m;
 	private boolean vivo;
 
-	public Malo(PApplet app, int posX, int posY){
+	public Malo(PApplet app, int posX, int posY, Mundo m){
 		super(app, posX, posY);
+		this.m = m;
 		vivo = true;
 	}
 	
@@ -15,7 +16,6 @@ public class Malo extends Automata {
 		// TODO Auto-generated method stub
 		try {
 			while (vivo) {
-				mover();
 				Thread.sleep(5);
 			}
 		} catch (InterruptedException e) {
@@ -24,16 +24,21 @@ public class Malo extends Automata {
 		}
 	}
 
+	public boolean validar(int cx, int cy){
+		return PApplet.dist(cx, cy, posX, posY) < 30;
+	}
+	
+    public void mover(int posX, int posY){
+    this.posX = posX;
+    this.posY = posY;
+    }
+	
 	public void pintar(){
 		app.fill(255, 95, 94);
 		app.noStroke();
 		app.ellipse(posX, posY, 50, 50);
 	}
 	
-	public void mover() {
-		// TODO Auto-generated method stub
-		posX += 2;
-	}
 	
 	
 }

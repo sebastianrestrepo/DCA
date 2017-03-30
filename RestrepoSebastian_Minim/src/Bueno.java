@@ -4,6 +4,8 @@ public class Bueno extends Automata {
 
 	private Mundo m;
 	private boolean vivo;
+	private int mover;
+	private int huir;
 
 	public Bueno(PApplet app, int posX, int posY, Mundo m) {
 		super(app, posX, posY);
@@ -17,12 +19,12 @@ public class Bueno extends Automata {
 		try {
 			while (vivo) {
 				Malo refMalo = m.getMalo();
-				if (!(app.dist(posX, posY, refMalo.getPosX(), refMalo.getPosY()) < 20)) {
-					mover();	
-				}else{
-					vivo = false;
+				mover = (int) app.random(0, 3);
+				//mover();
+				if ((app.dist(posX, posY, refMalo.getPosX(), refMalo.getPosY()) < 20)) {
+					huir();
 				}
-				Thread.sleep(10);
+				Thread.sleep(33);
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -38,7 +40,37 @@ public class Bueno extends Automata {
 
 	public void mover() {
 		// TODO Auto-generated method stub
-		posX += 2;
+		switch (mover) {
+		case 0:
+			posX += 5;
+			posY = posY;
+			break;
+		case 1:
+			posX -= 2;
+			posY = posY;
+			break;
+		case 2:
+			posY += 5;
+			posX = posX;
+			break;
+		case 3:
+			posY -= 2;
+			posX = posX;
+			break;
+		}
+	}
+
+	public void huir() {
+		switch (huir) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
 	}
 
 }
