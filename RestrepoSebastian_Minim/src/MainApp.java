@@ -16,7 +16,7 @@ public class MainApp extends PApplet {
 
 	@Override
 	public void settings() {
-		size(500, 500);
+		size(1200, 200);
 	}
 
 	@Override

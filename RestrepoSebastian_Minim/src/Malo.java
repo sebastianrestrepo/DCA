@@ -7,6 +7,7 @@ public class Malo extends Automata {
 
 	public Malo(PApplet app, int posX, int posY){
 		super(app, posX, posY);
+		vivo = true;
 	}
 	
 	@Override
@@ -15,7 +16,7 @@ public class Malo extends Automata {
 		try {
 			while (vivo) {
 				mover();
-				Thread.sleep(33);
+				Thread.sleep(5);
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
