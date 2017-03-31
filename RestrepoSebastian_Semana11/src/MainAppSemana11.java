@@ -25,7 +25,7 @@ public class MainAppSemana11 extends PApplet {
 	}
 
 	public void mousePressed() {
-
+		p.clicked();
 	}
 
 }
