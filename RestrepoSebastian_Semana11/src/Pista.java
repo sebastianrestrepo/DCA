@@ -6,7 +6,7 @@ public class Pista {
 	private PApplet app;
 	private ArrayList<Automata> c;
 	private int posX, posY;
-	private int h, s, b;
+	private int h, s, b, x;
 
 	public Pista(PApplet app) {
 		this.app = app;
