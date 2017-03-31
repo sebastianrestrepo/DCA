@@ -23,7 +23,7 @@ public class Pista {
 	public void inicializar() {
 		c = new ArrayList<Automata>();
 		capsulas = new ArrayList<Thread>();
-		posX = 175;
+		posX = 175; 
 		posY = 175;
 	}
 
