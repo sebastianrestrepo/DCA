@@ -23,27 +23,28 @@ public class Pista {
 		c = new ArrayList<Automata>();
 		capsulas = new ArrayList<Thread>();
 		o = new ArrayList<Obstaculo>();
-		posX = 175; 
+		posX = 175;
 		posY = 175;
 	}
 
 	public void agregar() {
-		//Caballo
+		// Caballo
 		for (int i = 0; i < 4; i++) {
-			h = (int) app.random(0, 365);
+			h = (int) app.random(0, 360);
 			caballo = new Automata(posX, 60 + posY * i, h, 5, this);
 			c.add(caballo);
 		}
-		
-		for(int i = 0 ; i < c.size() ; i++){
+
+		for (int i = 0; i < c.size(); i++) {
 			capsulas.add(new Thread(c.get(i)));
 		}
-		
-		//obstaculos
+
+		// obstaculos
 		for (int i = 0; i < 4; i++) {
 			o.add(new Obstaculo(posX + 500, 60 + posY * i));
+			o.add(new Obstaculo(posX + 300, 60 + posY * i));
 		}
-		//Final del metodo agregar
+		// Final del metodo agregar
 	}
 
 	public void pintar() {
@@ -51,14 +52,14 @@ public class Pista {
 		pintarObstaculos();
 	}
 
-	public void clicked(){
-		for (int i = 0 ; i < capsulas.size() ; i++) {
-			if(capsulas.get(i).getState()==Thread.State.NEW){
+	public void clicked() {
+		for (int i = 0; i < capsulas.size(); i++) {
+			if (capsulas.get(i).getState() == Thread.State.NEW) {
 				capsulas.get(i).start();
 			}
 		}
 	}
-	
+
 	public void pintarCaballos() {
 		for (int i = 0; i < c.size(); i++) {
 			c.get(i).pintar(app, s, b);
@@ -70,8 +71,8 @@ public class Pista {
 			o.get(i).pintar(app);
 		}
 	}
-	
-	//GETTERS Y SETTERS
+
+	// GETTERS Y SETTERS
 	public ArrayList<Obstaculo> getO() {
 		return o;
 	}
@@ -87,7 +88,6 @@ public class Pista {
 	public void setC(ArrayList<Automata> c) {
 		this.c = c;
 	}
-	
-	
-	// FINAL DE LA CLASE LÓGICA
+
+	// FINAL DE LA CLASE Lï¿½GICA
 }
