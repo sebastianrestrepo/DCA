@@ -10,7 +10,7 @@ public class MainAppPixeles extends PApplet {
 	private PImage bandera;
 	private PImage circulo;
 	private PImage japon;
-	private float sumX, sumY, cant;
+	private float sumX, sumY, cant, xMin, yMin, xMax, yMax;
 
 	public static void main(String[] args) {
 		PApplet.main("MainAppPixeles");
@@ -26,7 +26,7 @@ public class MainAppPixeles extends PApplet {
 		fTres = createGraphics(600, 600);
 		bandera = createImage(200, 200, RGB);
 		circulo = createImage(width, height, RGB);
-		japon = loadImage("japan.png");
+		japon = loadImage("japan.jpg");
 		bandera();
 		calcularCirculo();
 		calcularImagen();
@@ -181,17 +181,31 @@ public class MainAppPixeles extends PApplet {
 	public void calcularImagen() {
 		cant = 1;
 		japon.loadPixels();
+		xMin = japon.width;
+		yMin = japon.height;
+		xMax = 0;
+		yMax = 0;
 		for (int y = 0; y < japon.height; y++) {
 			for (int x = 0; x < japon.width; x++) {
 				int i = x + (y * japon.width);
 				float r = red(japon.pixels[i]);
 				float g = green(japon.pixels[i]);
 				float b = blue(japon.pixels[i]);
-				if (r > 210 && g < 100 && b < 100) {
-					sumX += x;
-					sumY += y;
-					cant++;
+				if (r == 255 && g == 0 && b == 0) {
+					if (x < xMin) {
+						xMin = x;
+					}
+					if (y < yMin) {
+						yMin = y;
+					}
+					if (x > xMax) {
+						xMax = x;
+					}
+					if (y > yMax) {
+						yMax = y;
+					}
 				}
+				//
 			}
 		}
 		japon.updatePixels();
@@ -201,7 +215,7 @@ public class MainAppPixeles extends PApplet {
 		image(japon, width / 2, height / 2, japon.width, japon.height);
 		noStroke();
 		fill(0, 255, 0);
-		ellipse(sumX / cant, sumY / cant, 30, 30);
+		ellipse(xMin + (xMax - xMin) / 2, yMin + (yMax - yMin) / 2, 30, 30);
 	}
 
 	// FINAL DE LA CLASE EJECUTABLE
