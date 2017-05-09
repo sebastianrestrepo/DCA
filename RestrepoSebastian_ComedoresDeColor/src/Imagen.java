@@ -29,21 +29,27 @@ public class Imagen implements Runnable {
 
 	public void ponerGris() {
 		foto.loadPixels();
-		for (int i = 0; i < log.getC().size(); i++) {
+
+		for (int y = 0; y < foto.height; y++) {
 			for (int x = 0; x < foto.width; x++) {
-				for (int y = 0; y < foto.height; y++) {
-					int d = (int) PApplet.dist(x, y, log.getC().get(i).getPosX(), log.getC().get(i).getPosY());
-					int index = x + y * foto.width;
+				int index = x + y * foto.width;
+
+				for (int i = 0; i < log.getC().size(); i++) {
+
+					Comedor c = log.getC().get(i);
+
 					float r = app.red(foto.pixels[index]);
 					float g = app.green(foto.pixels[index]);
 					float b = app.green(foto.pixels[index]);
 					int gris = (int) (r + g + b) / 3;
-					foto.pixels[d] = app.color(gris, gris, gris);
+					if (app.dist(c.getPosX(), c.getPosY(), x, y) < 30) {
+						foto.pixels[index] = app.color(gris);
+					}
 				}
 			}
 		}
 		foto.updatePixels();
-		//Final del método gris
+		// Final del método gris
 	}
 
 	public void pintar() {

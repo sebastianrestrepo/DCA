@@ -12,28 +12,16 @@ public class Comedor implements Runnable {
 		this.posY = posY;
 		this.tam = tam;
 		vivo = true;
-		estado = (int) Math.random() * 3;
+		estado = (int) (0+Math.random() * 3);
+		//this.app = app.MainAppComedores;
 	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		while (vivo) {
-			estado();
-			devuelvis();
-			try {
-				Thread.sleep(33);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
+
 
 	public void pintar(PApplet app) {
 		this.app = app;
 		app.noStroke();
-		app.fill(255, 70);
+		app.fill(255,0,0, 70);
 		app.ellipse(posX, posY, tam + 30, tam + 30);
 		app.fill(255);
 		app.ellipse(posX, posY, tam, tam);
@@ -90,6 +78,22 @@ public class Comedor implements Runnable {
 			if (posX < 10)
 				estado = 2;
 			break;
+		}
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while (vivo) {
+			estado();
+			devuelvis();
+			cambioEstado(app);
+			try {
+				Thread.sleep(33);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

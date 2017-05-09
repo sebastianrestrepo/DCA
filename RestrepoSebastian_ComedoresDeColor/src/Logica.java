@@ -30,7 +30,7 @@ public class Logica {
 	}
 
 	public void agregarComedores() {
-		c.add(new Comedor(282, 423, 30));
+		c.add(new Comedor(app.mouseX, app.mouseY, 30));
 		 Thread temp = new Thread(c.get(c.size() - 1));
 			if (temp.getState() == Thread.State.NEW) {
 				temp.start();
