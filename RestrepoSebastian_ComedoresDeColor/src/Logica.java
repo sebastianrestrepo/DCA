@@ -30,7 +30,7 @@ public class Logica {
 	}
 
 	public void agregarComedores() {
-		c.add(new Comedor(app.mouseX, app.mouseY, 30));
+		c.add(new Comedor(app, app.mouseX, app.mouseY, 30));
 		 Thread temp = new Thread(c.get(c.size() - 1));
 			if (temp.getState() == Thread.State.NEW) {
 				temp.start();
@@ -50,8 +50,8 @@ public class Logica {
 
 	public void pintarComedor() {
 		for (int i = 0; i < c.size(); i++) {
-			c.get(i).pintar(app);
-			c.get(i).cambioEstado(app);
+			c.get(i).pintar();
+			c.get(i).cambioEstado();
 		}
 	}
 
