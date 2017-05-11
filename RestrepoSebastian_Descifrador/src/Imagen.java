@@ -49,7 +49,7 @@ public class Imagen implements Runnable {
 				int r = (int) app.red(imagen.pixels[index]);
 				int g = (int) app.green(imagen.pixels[index]);
 				int b = (int) app.blue(imagen.pixels[index]);
-				if ((r + g + b) == fA) {
+				if (fA > (r + g + b)-50 && fA > (r + g + b)+50) {
 					fA = fA / 3;
 					imagen.pixels[index] = app.color(fA);
 					System.out.println(fA);
