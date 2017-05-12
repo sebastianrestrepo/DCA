@@ -23,31 +23,33 @@ public class Agente extends Thread {
 
 	@Override
 	public void run() {
+
 		try {
-			while(vivo){
-				Thread.sleep(15);
+			while (vivo) {
 				mover();
 				devuelvis();
 				cambioEstado();
+				sleep(2);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public void mover() {
 		switch (estado) {
 		case 1:
-			x += 5;
+			x ++;
 			break;
 		case 2:
-			x -= 5;
+			x --;
 			break;
 		case 3:
-			y += 5;
+			y ++;
 			break;
 		case 4:
-			y -= 5;
+			y --;
 			break;
 		}
 	}
@@ -61,22 +63,22 @@ public class Agente extends Thread {
 	public void devuelvis() {
 		switch (estado) {
 		case 1:
-			if (x >= 447) {
+			if (x > 447) {
 				estado = 2;
 			}
 			break;
 		case 2:
-			if (x <= 0) {
+			if (x < 5) {
 				estado = 1;
 			}
 			break;
 		case 3:
-			if (y <= 0) {
+			if (y > app.height) {
 				estado = 4;
 			}
 			break;
 		case 4:
-			if (y >= app.height) {
+			if (y < 0) {
 				estado = 3;
 			}
 			break;
@@ -87,17 +89,10 @@ public class Agente extends Thread {
 		app.noStroke();
 		app.fill(255);
 		app.ellipse(x, y, tam, tam);
-		xDos = x + 447;
-		yDos = y;
-		app.ellipse(xDos, yDos, tam, tam);
 	}
 
 	public boolean validar(int cx, int cy) {
 		return PApplet.dist(x, y, cx, cy) < tam/2;
-	}
-	
-	public boolean validarDos(int cx, int cy) {
-		return PApplet.dist(xDos, yDos, cx, cy) < tam/2;
 	}
 
 	// ------------GETTERS Y SETTERS----------//
@@ -140,8 +135,6 @@ public class Agente extends Thread {
 	public void setyDos(int yDos) {
 		this.yDos = yDos;
 	}
-	
-	
 
 	// -------------FINAL DE LA CLASE AGENTE-------------//
 }
